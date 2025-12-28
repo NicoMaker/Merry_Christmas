@@ -103,25 +103,26 @@ ornamentPositions.forEach((pos, i) => {
   document.getElementById(pos.layer).appendChild(ornament);
 });
 
-const presentEmojis = ["🎁", "🎀", "🎁", "🎀", "🎁", "🎁"];
-const presentPositions = [
-  { left: "calc(50% - 280px)" },
-  { left: "calc(50% - 150px)" },
-  { left: "calc(50% - 40px)" },
-  { left: "calc(50% + 70px)" },
-  { left: "calc(50% + 180px)" },
-  { left: "calc(50% + 290px)" },
-];
+// Add only ONE present at the bottom center
+const present = document.createElement("div");
+present.className = "present";
+present.textContent = "🎁";
+present.style.left = "50%";
+present.style.transform = "translateX(-50%)";
+present.style.fontSize = "60px";
+scene.appendChild(present);
 
-presentPositions.forEach((pos, i) => {
-  const present = document.createElement("div");
-  present.className = "present";
-  present.textContent = presentEmojis[i];
-  present.style.left = pos.left;
-  present.style.fontSize = Math.random() * 12 + 50 + "px";
-  present.style.animationDelay = i * 0.3 + "s";
-  scene.appendChild(present);
-});
+// Add wreath (ghirlanda) at top right corner
+const wreath = document.createElement("div");
+wreath.className = "wreath";
+wreath.textContent = "🎄";
+wreath.style.position = "absolute";
+wreath.style.top = "20px";
+wreath.style.right = "20px";
+wreath.style.fontSize = "80px";
+wreath.style.animation = "wreathSpin 8s linear infinite";
+wreath.style.filter = "drop-shadow(0 5px 15px rgba(0, 255, 0, 0.4))";
+scene.appendChild(wreath);
 
 // Add snowflakes
 for (let i = 0; i < 60; i++) {

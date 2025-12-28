@@ -5,7 +5,7 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #0a1128, #1a2850, #2c3e7a);
+  background: linear-gradient(to bottom, #0f1b47, #1e3a8a, #3b5998);
   overflow: hidden;
   font-family: "Georgia", serif;
   height: 100vh;
@@ -370,15 +370,40 @@ body {
   animation: presentWiggle 2.2s ease-in-out infinite;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
   z-index: 50;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @keyframes presentWiggle {
   0%,
   100% {
-    transform: rotate(-6deg) scale(1);
+    transform: translateX(-50%) rotate(-6deg) scale(1);
   }
   50% {
-    transform: rotate(6deg) scale(1.12);
+    transform: translateX(-50%) rotate(6deg) scale(1.12);
+  }
+}
+
+/* Wreath (Ghirlanda) */
+.wreath {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 80px;
+  animation: wreathSpin 8s linear infinite;
+  filter: drop-shadow(0 5px 15px rgba(0, 255, 0, 0.4));
+  z-index: 100;
+}
+
+@keyframes wreathSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
   }
 }
 
@@ -429,8 +454,14 @@ body {
   }
 
   .present {
-    font-size: 42px !important;
+    font-size: 55px !important;
     bottom: 35px;
+  }
+
+  .wreath {
+    font-size: 65px;
+    top: 15px;
+    right: 15px;
   }
 
   .snowflake {
@@ -466,8 +497,14 @@ body {
   }
 
   .present {
-    font-size: 38px !important;
+    font-size: 50px !important;
     bottom: 30px;
+  }
+
+  .wreath {
+    font-size: 55px;
+    top: 12px;
+    right: 12px;
   }
 
   .snowflake {
@@ -510,8 +547,12 @@ body {
   }
 
   .present {
-    font-size: 36px !important;
+    font-size: 48px !important;
     bottom: 28px;
+  }
+
+  .wreath {
+    font-size: 52px;
   }
 
   .snowflake {
@@ -545,8 +586,12 @@ body {
   }
 
   .present {
-    font-size: 34px !important;
+    font-size: 45px !important;
     bottom: 25px;
+  }
+
+  .wreath {
+    font-size: 48px;
   }
 
   .star {
@@ -584,8 +629,14 @@ body {
   }
 
   .present {
-    font-size: 32px !important;
+    font-size: 42px !important;
     bottom: 22px;
+  }
+
+  .wreath {
+    font-size: 45px;
+    top: 10px;
+    right: 10px;
   }
 
   .star {
@@ -750,4 +801,8 @@ body {
   .ornament {
     font-size: 17px !important;
   }
+}
+
+body{
+  background-color: blue;
 }
