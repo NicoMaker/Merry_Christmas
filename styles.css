@@ -5,22 +5,28 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #0a1128, #1a2850, #0f1b3a);
+  background: linear-gradient(to bottom, #0a1128, #1a2850, #2c3e7a);
   overflow: hidden;
   font-family: "Georgia", serif;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  width: 100%;
+  touch-action: none;
 }
 
 .scene {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
-/* Reduced tree size and centered it with message visible */
+/* Tree container centered */
 .tree-container {
   position: absolute;
   top: 50%;
@@ -154,14 +160,13 @@ body {
   }
 }
 
-/* Lights positioned inside tree with color change animation */
+/* Lights */
 .light {
   position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  animation: lightPulse 1.2s ease-in-out infinite,
-    colorChange 3s linear infinite;
+  animation: lightPulse 1.2s ease-in-out infinite, colorChange 3s linear infinite;
   z-index: 10;
   transform: translate(-50%, -50%);
 }
@@ -223,16 +228,17 @@ body {
   animation-delay: 2.4s, 2.4s;
 }
 
-/* Santa with reindeer and sleigh passing above the tree */
+/* Santa */
 .santa-container {
   position: absolute;
-  top: 20%;
+  top: 5%;
   right: -300px;
   animation: santaFly 18s linear infinite;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 100;
 }
 
 @keyframes santaFly {
@@ -289,28 +295,19 @@ body {
   }
 }
 
-/* Message positioned below tree and more visible */
+/* Message */
 .message {
   position: relative;
   margin-top: 80px;
-  font-size: 90px;
+  font-size: 110px;
   font-weight: bold;
-  background: linear-gradient(
-    45deg,
-    #ff1a1a,
-    #00ff00,
-    #ffd700,
-    #00ffff,
-    #ff69b4,
-    #ff1a1a
-  );
+  background: linear-gradient(45deg, #ff1a1a, #00ff00, #ffd700, #00ffff, #ff69b4, #ff1a1a);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: messageGlow 4s ease infinite,
-    messageBounce 2.5s ease-in-out infinite;
-  letter-spacing: 10px;
+  animation: messageGlow 4s ease infinite, messageBounce 2.5s ease-in-out infinite;
+  letter-spacing: 12px;
   filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.8));
 }
 
@@ -339,10 +336,12 @@ body {
 .snowflake {
   position: absolute;
   color: white;
-  font-size: 28px;
+  font-size: 32px;
   opacity: 0.95;
   animation: snowFall linear infinite;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes snowFall {
@@ -364,12 +363,13 @@ body {
   }
 }
 
-/* Presents positioned at bottom of screen */
+/* Presents */
 .present {
   position: absolute;
   bottom: 50px;
   animation: presentWiggle 2.2s ease-in-out infinite;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+  z-index: 50;
 }
 
 @keyframes presentWiggle {
@@ -398,64 +398,356 @@ body {
   }
 }
 
+/* ========================================
+   MOBILE RESPONSIVE - OTTIMIZZATO
+   ======================================== */
+
+/* Tablet */
 @media (max-width: 768px) {
   .tree-container {
-    transform: translate(-50%, -50%) scale(0.45);
+    transform: translate(-50%, -52%) scale(0.55);
   }
 
   @keyframes treeSwing {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) scale(0.45) rotate(-2deg);
+    0%, 100% {
+      transform: translate(-50%, -52%) scale(0.55) rotate(-2deg);
     }
     50% {
-      transform: translate(-50%, -50%) scale(0.45) rotate(2deg);
+      transform: translate(-50%, -52%) scale(0.55) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 75px;
+    letter-spacing: 8px;
+    margin-top: 65px;
+  }
+
+  .santa-container {
+    transform: scale(0.65);
+    top: 8%;
+  }
+
+  .present {
+    font-size: 42px !important;
+    bottom: 35px;
+  }
+
+  .snowflake {
+    font-size: 26px;
+  }
+}
+
+/* Mobile grande (iPhone 12 Pro Max, Samsung S21+) */
+@media (max-width: 480px) {
+  .tree-container {
+    transform: translate(-50%, -48%) scale(0.52);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -48%) scale(0.52) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -48%) scale(0.52) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 62px;
+    letter-spacing: 5px;
+    margin-top: 58px;
+    white-space: nowrap;
+  }
+
+  .santa-container {
+    transform: scale(0.6);
+    top: 10%;
+  }
+
+  .present {
+    font-size: 38px !important;
+    bottom: 30px;
+  }
+
+  .snowflake {
+    font-size: 24px;
+  }
+
+  .star {
+    font-size: 62px;
+  }
+
+  .light {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ornament {
+    font-size: 22px !important;
+  }
+}
+
+/* Mobile standard (iPhone 13/14, Pixel) */
+@media (max-width: 430px) {
+  .tree-container {
+    transform: translate(-50%, -46%) scale(0.5);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -46%) scale(0.5) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -46%) scale(0.5) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 58px;
+    letter-spacing: 4px;
+    margin-top: 55px;
+  }
+
+  .present {
+    font-size: 36px !important;
+    bottom: 28px;
+  }
+
+  .snowflake {
+    font-size: 22px;
+  }
+}
+
+/* Mobile medio (iPhone 12/13 mini) */
+@media (max-width: 390px) {
+  .tree-container {
+    transform: translate(-50%, -44%) scale(0.48);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -44%) scale(0.48) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -44%) scale(0.48) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 54px;
+    letter-spacing: 3px;
+    margin-top: 52px;
+  }
+
+  .santa-container {
+    transform: scale(0.52);
+  }
+
+  .present {
+    font-size: 34px !important;
+    bottom: 25px;
+  }
+
+  .star {
+    font-size: 58px;
+  }
+
+  .snowflake {
+    font-size: 21px;
+  }
+}
+
+/* Mobile piccolo (iPhone SE 2020/2022) */
+@media (max-width: 375px) {
+  .tree-container {
+    transform: translate(-50%, -42%) scale(0.46);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -42%) scale(0.46) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -42%) scale(0.46) rotate(2deg);
     }
   }
 
   .message {
     font-size: 50px;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
+    margin-top: 50px;
   }
 
   .santa-container {
-    transform: scale(0.7);
+    transform: scale(0.48);
+  }
+
+  .present {
+    font-size: 32px !important;
+    bottom: 22px;
+  }
+
+  .star {
+    font-size: 54px;
+  }
+
+  .light {
+    width: 13px;
+    height: 13px;
+  }
+
+  .ornament {
+    font-size: 21px !important;
+  }
+
+  .snowflake {
+    font-size: 20px;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile molto piccolo (iPhone SE 1st gen) */
+@media (max-width: 320px) {
   .tree-container {
-    transform: translate(-50%, -50%) scale(0.35);
+    transform: translate(-50%, -40%) scale(0.42);
   }
 
   @keyframes treeSwing {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) scale(0.35) rotate(-2deg);
+    0%, 100% {
+      transform: translate(-50%, -40%) scale(0.42) rotate(-2deg);
     }
     50% {
-      transform: translate(-50%, -50%) scale(0.35) rotate(2deg);
+      transform: translate(-50%, -40%) scale(0.42) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 44px;
+    letter-spacing: 1px;
+    margin-top: 46px;
+  }
+
+  .santa-container {
+    transform: scale(0.42);
+  }
+
+  .present {
+    font-size: 28px !important;
+    bottom: 18px;
+  }
+
+  .star {
+    font-size: 48px;
+  }
+
+  .light {
+    width: 11px;
+    height: 11px;
+  }
+
+  .ornament {
+    font-size: 19px !important;
+  }
+
+  .snowflake {
+    font-size: 18px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .tree-container {
+    transform: translate(-50%, -48%) scale(0.38);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -48%) scale(0.38) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -48%) scale(0.38) rotate(2deg);
     }
   }
 
   .message {
     font-size: 36px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+    margin-top: 42px;
   }
 
   .santa-container {
-    transform: scale(0.5);
+    transform: scale(0.42);
+    top: 5%;
+  }
+
+  .present {
+    font-size: 26px !important;
+    bottom: 15px;
+  }
+
+  .snowflake {
+    font-size: 16px;
+  }
+
+  .star {
+    font-size: 48px;
+  }
+
+  .light {
+    width: 12px;
+    height: 12px;
+  }
+
+  .ornament {
+    font-size: 19px !important;
   }
 }
-/* Santa with reindeer and sleigh passing above the tree */
-.santa-container {
-  position: absolute;
-  top: 5%;
-  right: -300px;
-  animation: santaFly 18s linear infinite;
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 100;
+
+/* Landscape molto basso */
+@media (max-height: 400px) and (orientation: landscape) {
+  .tree-container {
+    transform: translate(-50%, -45%) scale(0.32);
+  }
+
+  @keyframes treeSwing {
+    0%, 100% {
+      transform: translate(-50%, -45%) scale(0.32) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -45%) scale(0.32) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-top: 35px;
+  }
+
+  .santa-container {
+    transform: scale(0.35);
+    top: 3%;
+  }
+
+  .present {
+    font-size: 22px !important;
+    bottom: 10px;
+  }
+
+  .snowflake {
+    font-size: 14px;
+  }
+
+  .star {
+    font-size: 42px;
+  }
+
+  .light {
+    width: 10px;
+    height: 10px;
+  }
+
+  .ornament {
+    font-size: 17px !important;
+  }
 }
