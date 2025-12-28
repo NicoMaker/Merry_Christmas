@@ -1,0 +1,461 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom, #0a1128, #1a2850, #0f1b3a);
+  overflow: hidden;
+  font-family: "Georgia", serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Reduced tree size and centered it with message visible */
+.tree-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  animation: treeSwing 5s ease-in-out infinite;
+  text-align: center;
+}
+
+@keyframes treeSwing {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.6) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.6) rotate(2deg);
+  }
+}
+
+.tree {
+  position: relative;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+}
+
+.tree-layer {
+  margin: -25px auto;
+  position: relative;
+  animation: layerFloat 3.5s ease-in-out infinite;
+}
+
+.tree-layer:nth-child(2) {
+  animation-delay: 0s;
+}
+.tree-layer:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.tree-layer:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.tree-layer:nth-child(5) {
+  animation-delay: 0.45s;
+}
+
+@keyframes layerFloat {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.015);
+  }
+}
+
+.layer1 {
+  width: 0;
+  height: 0;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-bottom: 120px solid #0d5c2f;
+}
+
+.layer2 {
+  width: 0;
+  height: 0;
+  border-left: 105px solid transparent;
+  border-right: 105px solid transparent;
+  border-bottom: 145px solid #0f7039;
+}
+
+.layer3 {
+  width: 0;
+  height: 0;
+  border-left: 135px solid transparent;
+  border-right: 135px solid transparent;
+  border-bottom: 170px solid #0d5c2f;
+}
+
+.layer4 {
+  width: 0;
+  height: 0;
+  border-left: 165px solid transparent;
+  border-right: 165px solid transparent;
+  border-bottom: 195px solid #0f7039;
+}
+
+.trunk {
+  width: 55px;
+  height: 75px;
+  background: linear-gradient(to bottom, #5a3422, #3a1c0a);
+  margin: -10px auto 0;
+  border-radius: 0 0 12px 12px;
+  animation: trunkPulse 2.5s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes trunkPulse {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.03);
+  }
+}
+
+.star {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 70px;
+  animation: starSpin 4s linear infinite;
+  filter: drop-shadow(0 0 25px #ffd700) drop-shadow(0 0 45px #ffaa00);
+}
+
+@keyframes starSpin {
+  0% {
+    transform: translateX(-50%) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateX(-50%) rotate(90deg) scale(1.2);
+  }
+  50% {
+    transform: translateX(-50%) rotate(180deg) scale(1.4);
+  }
+  75% {
+    transform: translateX(-50%) rotate(270deg) scale(1.2);
+  }
+  100% {
+    transform: translateX(-50%) rotate(360deg) scale(1);
+  }
+}
+
+/* Lights positioned inside tree with color change animation */
+.light {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  animation: lightPulse 1.2s ease-in-out infinite,
+    colorChange 3s linear infinite;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes lightPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: brightness(1.2);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.5);
+    filter: brightness(2);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    background: radial-gradient(circle at 30% 30%, #ff6666, #ff0000);
+    box-shadow: 0 0 25px #ff0000, 0 0 45px #ff000080;
+  }
+  20% {
+    background: radial-gradient(circle at 30% 30%, #66ffff, #00ccff);
+    box-shadow: 0 0 25px #00ffff, 0 0 45px #00ffff80;
+  }
+  40% {
+    background: radial-gradient(circle at 30% 30%, #ffff66, #ffdd00);
+    box-shadow: 0 0 25px #ffff00, 0 0 45px #ffff0080;
+  }
+  60% {
+    background: radial-gradient(circle at 30% 30%, #66ff66, #00ff00);
+    box-shadow: 0 0 25px #00ff00, 0 0 45px #00ff0080;
+  }
+  80% {
+    background: radial-gradient(circle at 30% 30%, #ffaadd, #ff69b4);
+    box-shadow: 0 0 25px #ff69b4, 0 0 45px #ff69b480;
+  }
+  100% {
+    background: radial-gradient(circle at 30% 30%, #ff6666, #ff0000);
+    box-shadow: 0 0 25px #ff0000, 0 0 45px #ff000080;
+  }
+}
+
+.light.red {
+  animation-delay: 0s, 0s;
+}
+.light.blue {
+  animation-delay: 0.6s, 0.6s;
+}
+.light.yellow {
+  animation-delay: 1.2s, 1.2s;
+}
+.light.green {
+  animation-delay: 1.8s, 1.8s;
+}
+.light.pink {
+  animation-delay: 2.4s, 2.4s;
+}
+
+/* Santa with reindeer and sleigh passing above the tree */
+.santa-container {
+  position: absolute;
+  top: 20%;
+  right: -300px;
+  animation: santaFly 18s linear infinite;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes santaFly {
+  0% {
+    right: -300px;
+  }
+  100% {
+    right: 110%;
+  }
+}
+
+.reindeer-group {
+  font-size: 45px;
+  animation: reindeerBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes reindeerBounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sleigh {
+  font-size: 55px;
+  animation: sleighRock 0.6s ease-in-out infinite;
+}
+
+@keyframes sleighRock {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.santa {
+  font-size: 65px;
+  animation: santaBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes santaBounce {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+}
+
+/* Message positioned below tree and more visible */
+.message {
+  position: relative;
+  margin-top: 80px;
+  font-size: 90px;
+  font-weight: bold;
+  background: linear-gradient(
+    45deg,
+    #ff1a1a,
+    #00ff00,
+    #ffd700,
+    #00ffff,
+    #ff69b4,
+    #ff1a1a
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: messageGlow 4s ease infinite,
+    messageBounce 2.5s ease-in-out infinite;
+  letter-spacing: 10px;
+  filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes messageGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes messageBounce {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.08);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  color: white;
+  font-size: 28px;
+  opacity: 0.95;
+  animation: snowFall linear infinite;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes snowFall {
+  0% {
+    top: -10%;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  10% {
+    opacity: 0.95;
+  }
+  90% {
+    opacity: 0.95;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+    transform: rotate(360deg);
+  }
+}
+
+/* Presents positioned at bottom of screen */
+.present {
+  position: absolute;
+  bottom: 50px;
+  animation: presentWiggle 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes presentWiggle {
+  0%,
+  100% {
+    transform: rotate(-6deg) scale(1);
+  }
+  50% {
+    transform: rotate(6deg) scale(1.12);
+  }
+}
+
+.ornament {
+  position: absolute;
+  animation: ornamentSwing 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes ornamentSwing {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-12deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(12deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .tree-container {
+    transform: translate(-50%, -50%) scale(0.45);
+  }
+
+  @keyframes treeSwing {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(0.45) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.45) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+
+  .santa-container {
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 480px) {
+  .tree-container {
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+
+  @keyframes treeSwing {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(0.35) rotate(-2deg);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.35) rotate(2deg);
+    }
+  }
+
+  .message {
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+
+  .santa-container {
+    transform: scale(0.5);
+  }
+}
+/* Santa with reindeer and sleigh passing above the tree */
+.santa-container {
+  position: absolute;
+  top: 5%;
+  right: -300px;
+  animation: santaFly 18s linear infinite;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
